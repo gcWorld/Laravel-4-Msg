@@ -41,4 +41,9 @@ class Msg extends Eloquent
     	return $count;
     }
 
+    public function content()
+	{
+		return nl2br($this->message);
+	}
+
 }

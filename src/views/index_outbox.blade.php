@@ -5,6 +5,10 @@
 @parent
 @stop
 
+@section('title_content')
+{{{ Lang::get('msg::general.outbox_title') }}}
+@stop
+
 {{-- Content --}}
 @section('content')
 @if($msgs->isEmpty())

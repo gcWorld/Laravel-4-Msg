@@ -5,6 +5,10 @@
 @parent
 @stop
 
+@section('title_content')
+{{{ Lang::get('msg::general.inbox_title') }}}
+@stop
+
 {{-- Content --}}
 @section('content')
 @if($msgs->isEmpty())
@@ -22,7 +26,7 @@
 		<tbody>
 			@foreach($msgs as $msg)
 			<tr>
-				<td>@if(!$msg->read) <span class="text-danger"><i class="icon-envelope"></i> {{ $msg->subject }}</span>@else {{ $msg->subject }} @endif</td>
+				<td><a href="{{{ URL::to('msg/show/'.$msg->id) }}}">@if(!$msg->read) <span class="text-danger"><i class="icon-envelope"></i> {{ $msg->subject }}</span>@else {{ $msg->subject }} @endif</a></td>
 				<td>{{ $msg->author->username }}</td>
 				<td>{{ $msg->date() }}</td>
 				<td><a href="{{ action('MsgsController@delete', $msg->id) }}" class="btn btn-xs btn-danger">{{ Lang::get('msg::general.delete') }}</a></td>
