@@ -13,7 +13,10 @@
     },
     "autoload": {
         "classmap": [
-            "src/migrations"
+            "src/migrations",
+            "src/controllers",
+            "src/models"
+           
         ],
         "psr-0": {
             "GcWorld\\Msg\\": "src/"

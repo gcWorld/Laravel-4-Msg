@@ -18,7 +18,9 @@ class MsgServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('gc-world/msg');
+		$this->package('gcWorld/msg');
+
+		include __DIR__.'/../../routes.php';
 	}
 
 	/**
