@@ -14,8 +14,8 @@
 <form action="{{ action('MsgsController@handleCreate') }}" method="post" role="form">
 	<input type="hidden" name="_token" value="{{{ Session::getToken() }}}" />
 	<div class="form-group">
-		<label for="to">{{{ Lang::get('msg::general.to') }}}</label>
-		<input type="text" class="form-control" name="to" id="to" />
+		<label for="to">{{{ Lang::get('msg::general.to') }}}</label><br>
+		<input type="text" class="typeahead form-control " name="to" id="to" />
 	</div>
 	<div class="form-group">
 		<label for="subject">{{{ Lang::get('msg::general.subject') }}}</label>
@@ -31,5 +31,11 @@
 @stop
 
 @section('bottom_line')
-
+<script>
+$('.typeahead').typeahead({                                
+  name: 'usernames',                                                          
+  prefetch: "{{ action('MsgsController@data') }}",                                         
+  limit: 10                                                                   
+});
+</script>
 @stop

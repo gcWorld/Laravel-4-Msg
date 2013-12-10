@@ -17,19 +17,17 @@
 	<table id="blogs" class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th class="col-md-4">{{{ Lang::get('msg::general.subject') }}}</th>
+				<th class="col-md-6">{{{ Lang::get('msg::general.subject') }}}</th>
 				<th class="col-md-2">{{{ Lang::get('msg::general.to') }}}</th>
 				<th class="col-md-2">{{{ Lang::get('msg::general.date') }}}</th>
-				<th class="col-md-2">{{{ Lang::get('msg::general.actions') }}}</th>
 			</tr>
 		</thead>
 		<tbody>
 			@foreach($msgs as $msg)
 			<tr>
-				<td>{{ $msg->subject }}</td>
+				<td><a href="{{{ URL::to('msg/show/sent/'.$msg->id) }}}">@if(!$msg->read) <span class="text-danger"><i class="icon-envelope"></i> {{ $msg->subject }}</span>@else {{ $msg->subject }} @endif</a></td>
 				<td>{{ $msg->recipient->username }}</td>
-				<td>{{ $msg->date() }}</td>
-				<td><a href="{{ action('MsgsController@delete', $msg->id) }}" class="btn btn-xs btn-danger">{{ Lang::get('msg::general.delete') }}</a></td>
+				<td>{{ $msg->date() }}</td
 			</tr>
 			@endforeach
 		</tbody>

@@ -13,8 +13,10 @@ return array(
 	'date' => 'Datum',
 	'message' => 'Nachricht',
 	'actions' => 'Aktion',
+	'back' => 'Zurück',
 
 	'delete' => 'Löschen',
+	'cancel' => 'Abbrechen',
 	'reply' => 'Antworten',
 
 

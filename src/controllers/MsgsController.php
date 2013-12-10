@@ -45,7 +45,18 @@ class MsgsController extends BaseController
 
 	public function getMsg(Msg $msg) 
 	{
+   if( (Auth::user()->id)==$msg->to) {
+		$msg->read = true;
+		$msg->save();
 		return View::make('msg::show', compact('msg'));
+} else {
+return App::abort(404);
+}
+	}
+
+	public function getSentMsg(Msg $msg) 
+	{
+		return View::make('msg::show_sent', compact('msg'));
 	}
 
 	public function reply(Msg $msg) 
@@ -69,7 +80,7 @@ class MsgsController extends BaseController
 		//$user = ConfideRepository->getUserByIdentity( Input::get('to'), $identityColumns = array('username') );
 		//$user = User::where('username', '=', Input::get('to'))->first()->get();
 		$username = Input::get('to');
-		$user = DB::select('select id from users where username = ?', array($username));
+		$user = DB::select('select * from users where username = ?', array($username));
 		//var_dump($user);die();
 		$msg->to = $user[0]->id;
 
@@ -83,12 +94,25 @@ class MsgsController extends BaseController
 	public function delete(Msg $msg)
 	{
 		//show delete confirmation page
-		return View::make('msg::delete');
+		return View::make('msg::delete', compact('msg'));
 
 	}
 
 	public function handleDelete()
 	{
+
 		// handle delete confirmation
+		$id = Input::get('msg');
+		$msg = Msg::findOrFail($id);
+		$msg->delete();
+
+		return Redirect::action('MsgsController@index');
+	}
+
+	public function data()
+	{
+		$users = User::query()->lists('username');
+
+		return Response::json($users);
 	}
 }

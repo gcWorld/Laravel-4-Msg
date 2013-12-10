@@ -37,7 +37,7 @@ class Msg extends Eloquent
 
     public function getNewMsg()
     {
-    	$count = User::find(Auth::user()->id)->messages()->where('read', '=', 1)->count();
+    	$count = User::find(Auth::user()->id)->messages()->where('read', '=', 0)->count();
     	return $count;
     }
 
