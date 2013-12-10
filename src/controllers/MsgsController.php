@@ -45,23 +45,27 @@ class MsgsController extends BaseController
 
 	public function getMsg(Msg $msg) 
 	{
-   if( (Auth::user()->id)==$msg->to) {
-		$msg->read = true;
-		$msg->save();
-		return View::make('msg::show', compact('msg'));
-} else {
-return App::abort(404);
-}
+   		if( (Auth::user()->id)==$msg->to) {
+			$msg->read = true;
+			$msg->save();
+			return View::make('msg::show', compact('msg'));
+		} else {
+			return App::abort(404);
+		}
 	}
 
 	public function getSentMsg(Msg $msg) 
 	{
-		return View::make('msg::show_sent', compact('msg'));
+		if( (Auth::user()->id)==$msg->from) {
+			return View::make('msg::show_sent', compact('msg'));
+		} else {
+			return App::abort(404);
+		}
 	}
 
 	public function reply(Msg $msg) 
 	{
-		return View::make('msg::show', compact('msg'));
+		return View::make('msg::new_msg', compact('msg'));
 	}
 
 	public function create()
@@ -88,7 +92,8 @@ return App::abort(404);
 		$msg->message = Input::get('message');
 		$msg->save();
 
-		return Redirect::action('MsgsController@index');
+		return Redirect::action('MsgsController@index')
+				->with( 'success', Lang::get('msg::general.alert.msg_send') );
 	}
 
 	public function delete(Msg $msg)

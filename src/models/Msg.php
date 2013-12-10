@@ -15,6 +15,16 @@ class Msg extends Eloquent
         return $formatted;
 	}
 
+    public function date_normal()
+    {
+        $date = $this->created_at;
+        $date = date_timestamp_get($date);
+        $lang = Config::get('application.language'); 
+        $formatted = DateFmt::Format('d##my H#:s#', $date, 'de');
+
+        return $formatted;
+    }
+
 	public function author()
 	{
 		return $this->belongsTo('User', 'from');

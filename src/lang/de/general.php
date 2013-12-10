@@ -4,6 +4,7 @@ return array(
 
 	'inbox_title' => 'Posteingang',
 	'outbox_title' => 'Postausgang',
+	'new_title' => 'Neue Nachricht',
 
 	'no_messages' => 'Keine Nachrichten!',
 
@@ -19,5 +20,10 @@ return array(
 	'cancel' => 'Abbrechen',
 	'reply' => 'Antworten',
 
+	'from2' => 'von',
+
+	'alert' => array(
+		'msg_send' => 'Nachricht erfolgreich verschickt!',
+	),
 
 );
