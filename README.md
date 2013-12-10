@@ -1,6 +1,11 @@
 Laravel-4-Msg
 =============
 
+Requires
+--------
+
+* Twitter typeahead.js
+
 Usage
 -----
 
