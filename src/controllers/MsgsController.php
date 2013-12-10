@@ -77,23 +77,39 @@ class MsgsController extends BaseController
 
 	public function handleCreate()
 	{
-		//handle new msg form submission
-		$msg = new Msg;
-		$msg->subject = Input::get('subject');
+		$rules = array(
+            'to'   => 'required|exists:users,username',
+            'subject' => 'required|min:3',
+            'message' => 'required|min:2'
+        );
 
-		//$user = ConfideRepository->getUserByIdentity( Input::get('to'), $identityColumns = array('username') );
-		//$user = User::where('username', '=', Input::get('to'))->first()->get();
-		$username = Input::get('to');
-		$user = DB::select('select * from users where username = ?', array($username));
-		//var_dump($user);die();
-		$msg->to = $user[0]->id;
+        // Validate the inputs
+        $validator = Validator::make(Input::all(), $rules);
 
-		$msg->from = Auth::user()->id;
-		$msg->message = Input::get('message');
-		$msg->save();
+        // Check if the form validates with success
+        if ($validator->passes())
+        {
+			//handle new msg form submission
+			$msg = new Msg;
+			$msg->subject = Input::get('subject');
 
-		return Redirect::action('MsgsController@index')
-				->with( 'success', Lang::get('msg::general.alert.msg_send') );
+			//$user = ConfideRepository->getUserByIdentity( Input::get('to'), $identityColumns = array('username') );
+			//$user = User::where('username', '=', Input::get('to'))->first()->get();
+			$username = Input::get('to');
+			$user = DB::select('select * from users where username = ?', array($username));
+			//var_dump($user);die();
+			$msg->to = $user[0]->id;
+
+			$msg->from = Auth::user()->id;
+			$msg->message = Input::get('message');
+			$msg->save();
+
+			return Redirect::action('MsgsController@index')
+					->with( 'success', Lang::get('msg::general.alert.msg_send') );
+		} else {
+			return Redirect::action('MsgsController@create')->withErrors($validator)->withInput();
+		}
+
 	}
 
 	public function delete(Msg $msg)
