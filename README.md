@@ -1,6 +1,8 @@
 Laravel-4-Msg
 =============
 
+[![Build Status](https://travis-ci.org/gcWorld/Laravel-4-Msg.png?branch=master)](https://travis-ci.org/gcWorld/Laravel-4-Msg)
+
 Requires
 --------
 
