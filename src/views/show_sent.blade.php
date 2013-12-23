@@ -11,7 +11,7 @@
 
 {{-- Content --}}
 @section('content')
-	<small class=""><i class="icon-user"></i> <span class="muted">{{{ $msg->recipient->username }}}</span>
+	<small class=""><i class="icon-user"></i> <span class="muted">{{{ isset($msg->recipient) ? $msg->recipient->username : Lang::get('msg::general.deleted_user') }}}</span>
 					| <i class="icon-calendar"></i> <!--Sept 16th, 2012-->{{{ $msg->date() }}}
 	</small>
 	<p>{{ $msg->content() }}</p>

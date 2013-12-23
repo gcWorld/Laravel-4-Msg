@@ -15,7 +15,7 @@
 	<input type="hidden" name="_token" value="{{{ Session::getToken() }}}" />
 	<div class="form-group {{ $errors->first('to','has-error') }}">
 		<label class="control-label" for="to">{{{ Lang::get('msg::general.to') }}}</label><br>
-		<input type="text" class="typeahead form-control " name="to" id="to" value="{{{ Input::old('to', isset($msg) ? $msg->author->username : null) }}}" />
+		<input type="text" class="typeahead form-control " name="to" id="to" value="{{{ Input::old('to', isset($msg->author) ? $msg->author->username : null) }}}" />
 	</div>
 	<div class="form-group {{ $errors->first('subject','has-error') }}">
 		<label class="control-label" for="subject">{{{ Lang::get('msg::general.subject') }}}</label>
@@ -33,7 +33,7 @@
 <div class="panel panel-success">
 	<div class="panel-heading">
 		<small class="pull-right">{{{ $msg->date_normal() }}}</small>
-    	<h3 class="panel-title">'{{{ $msg->subject }}}' {{{ Lang::get('msg::general.from2') }}} {{{$msg->author->username}}}</h3>
+    	<h3 class="panel-title">'{{{ $msg->subject }}}' {{{ Lang::get('msg::general.from2') }}} {{{isset($msg->author) ? $msg->author->username : Lang::get('msg::general.deleted_user')}}}</h3>
   	</div>
   	<div class="panel-body">
 		{{{ $msg->message }}}

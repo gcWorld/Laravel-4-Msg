@@ -22,6 +22,8 @@ return array(
 
 	'from2' => 'von',
 
+	'deleted_user' => '[gelöscht]',
+
 	'alert' => array(
 		'msg_send' => 'Nachricht erfolgreich verschickt!',
 	),
