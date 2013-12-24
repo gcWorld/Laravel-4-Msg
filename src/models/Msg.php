@@ -10,7 +10,7 @@ class Msg extends Eloquent
 		$date = $this->created_at;
 		$date = date_timestamp_get($date);
         $lang = Config::get('application.language'); 
-        $formatted = DateFmt::Format('AGO[t]IF-FAR[d##my H#:s#]', $date, 'de');
+        $formatted = DateFmt::Format('AGO[t]IF-FAR[d##my H##:s##]', $date, 'de');
 
         return $formatted;
 	}
@@ -20,7 +20,7 @@ class Msg extends Eloquent
         $date = $this->created_at;
         $date = date_timestamp_get($date);
         $lang = Config::get('application.language'); 
-        $formatted = DateFmt::Format('d##my H#:s#', $date, 'de');
+        $formatted = DateFmt::Format('d##my H##:s##', $date, 'de');
 
         return $formatted;
     }
