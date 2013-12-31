@@ -23,3 +23,4 @@ Route::post('/new', 'MsgsController@handleCreate');
 Route::post('/delete', 'MsgsController@handleDelete');
 
 });
+

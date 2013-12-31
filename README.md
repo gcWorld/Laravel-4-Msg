@@ -6,7 +6,9 @@ Laravel-4-Msg
 Requires
 --------
 
+* Twitter Bootstrap 3.0.x
 * Twitter typeahead.js
+* Bootstrap 3 wysihtml5
 
 Installation
 ------------

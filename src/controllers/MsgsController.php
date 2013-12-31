@@ -91,7 +91,7 @@ class MsgsController extends BaseController
         {
 			//handle new msg form submission
 			$msg = new Msg;
-			$msg->subject = Input::get('subject');
+			$msg->subject = Purifier::clean(Input::get('subject'));
 
 			//$user = ConfideRepository->getUserByIdentity( Input::get('to'), $identityColumns = array('username') );
 			//$user = User::where('username', '=', Input::get('to'))->first()->get();
@@ -101,7 +101,7 @@ class MsgsController extends BaseController
 			$msg->to = $user[0]->id;
 
 			$msg->from = Auth::user()->id;
-			$msg->message = Input::get('message');
+			$msg->message = Purifier::clean(Input::get('message'));
 			$msg->save();
 
 			return Redirect::action('MsgsController@index')

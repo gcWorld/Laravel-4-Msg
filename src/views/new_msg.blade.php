@@ -23,7 +23,7 @@
 	</div>
 	<div class="form-group {{ $errors->first('message','has-error') }}">
 		<label class="control-label" for="message">{{{ Lang::get('msg::general.message') }}}</label>
-		<textarea type="text" class="form-control wysihtml5" name="message" id="message" rows="7">{{{ Input::old('message') }}}</textarea>
+		<textarea type="text" class="form-control" name="message" id="message" rows="7">{{{ Input::old('message') }}}</textarea>
 	</div>
 	<input type="submit" value="Create" class="btn btn-primary" />
 	<a href="{{ action('MsgsController@index') }}" class="btn btn-link">Cancel</a>
@@ -36,7 +36,7 @@
     	<h3 class="panel-title">'{{{ $msg->subject }}}' {{{ Lang::get('msg::general.from2') }}} {{{isset($msg->author) ? $msg->author->username : Lang::get('msg::general.deleted_user')}}}</h3>
   	</div>
   	<div class="panel-body">
-		{{{ $msg->message }}}
+		{{ $msg->message }}
 	</div>
 </div>
 @endif
@@ -49,5 +49,6 @@ $('.typeahead').typeahead({
   prefetch: "{{ action('MsgsController@data') }}",                                         
   limit: 10                                                                   
 });
+$('#message').wysihtml5();
 </script>
 @stop
