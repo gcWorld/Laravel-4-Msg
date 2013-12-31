@@ -15,11 +15,11 @@
 	<input type="hidden" name="_token" value="{{{ Session::getToken() }}}" />
 	<div class="form-group {{ $errors->first('to','has-error') }}">
 		<label class="control-label" for="to">{{{ Lang::get('msg::general.to') }}}</label><br>
-		<input type="text" class="typeahead form-control " name="to" id="to" value="{{{ Input::old('to', isset($msg->author) ? $msg->author->username : null) }}}" />
+		<input type="text" class="typeahead form-control " name="to" id="to" value="{{{ Input::old('to', $msg->author->username) }}}" />
 	</div>
 	<div class="form-group {{ $errors->first('subject','has-error') }}">
 		<label class="control-label" for="subject">{{{ Lang::get('msg::general.subject') }}}</label>
-		<input type="text" class="form-control" name="subject" id="subject" value="{{{ Input::old('subject', isset($msg) ? 'RE: '.$msg->subject : null) }}}"/> 
+		<input type="text" class="form-control" name="subject" id="subject" value="{{{ Input::old('subject', isset($msg) ? substr($msg->subject, 0, 3) != "Re:" ? "Re: ".$msg->subject : $msg->subject : null) }}}"/>
 	</div>
 	<div class="form-group {{ $errors->first('message','has-error') }}">
 		<label class="control-label" for="message">{{{ Lang::get('msg::general.message') }}}</label>
