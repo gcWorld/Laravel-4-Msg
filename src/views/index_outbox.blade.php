@@ -26,7 +26,7 @@
 			@foreach($msgs as $msg)
 			<tr>
 				<td><a href="{{{ URL::to('msg/show/sent/'.$msg->id) }}}">@if(!$msg->read) <span class="text-danger"><i class="icon-envelope"></i> {{ $msg->subject }}</span>@else {{ $msg->subject }} @endif</a></td>
-				<td>{{ isset($msg->recipient) ? $msg->recipient->username : Lang::get('msg::general.deleted_user') }}</td>
+				<td>{{ is_null($msg->recipient) ? Lang::get('msg::general.deleted_user') : $msg->recipient->username }}</td>
 				<td>{{ $msg->date() }}</td
 			</tr>
 			@endforeach
