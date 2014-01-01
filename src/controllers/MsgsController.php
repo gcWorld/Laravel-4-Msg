@@ -104,6 +104,19 @@ class MsgsController extends BaseController
 			$msg->message = Purifier::clean(Input::get('message'));
 			$msg->save();
 
+			$data = array(
+    			'author'=> $msg->author->username,
+    			'mess'  => $msg->message,
+    			'id'	=> $msg->id,
+    			'sub'	=> $msg->subject
+			);
+
+			Mail::send(array('msg::email.msg', 'msg::email.msg-plain'), $data, function($message) use ($msg)
+			{
+			  //$message->from('admin@site.com', 'Site Admin');
+			  $message->to($msg->recipient->email, $msg->recipient->username)->subject('Neue private Nachricht');
+			});
+
 			return Redirect::action('MsgsController@index')
 					->with( 'success', Lang::get('msg::general.alert.msg_send') );
 		} else {

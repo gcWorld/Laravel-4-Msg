@@ -15,7 +15,7 @@
 	<input type="hidden" name="_token" value="{{{ Session::getToken() }}}" />
 	<div class="form-group {{ $errors->first('to','has-error') }}">
 		<label class="control-label" for="to">{{{ Lang::get('msg::general.to') }}}</label><br>
-		<input type="text" class="typeahead form-control " name="to" id="to" value="{{{ Input::old('to', is_null($msg->recipient) ? "" : $msg->recipient->username ) }}}" />
+		<input type="text" class="typeahead form-control " name="to" id="to" value="{{{ Input::old('to', isset($msg) ? is_null($msg->recipient) ? "" : $msg->recipient->username : null) }}}" />
 	</div>
 	<div class="form-group {{ $errors->first('subject','has-error') }}">
 		<label class="control-label" for="subject">{{{ Lang::get('msg::general.subject') }}}</label>
