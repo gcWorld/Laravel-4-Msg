@@ -35,6 +35,8 @@
 		</tbody>
 	</table>
 
+	{{ $msgs->links(); }}
+
 	<div class='modal fade' id='deletepm'>
 		<div class="modal-dialog">
 			<div class="modal-content">

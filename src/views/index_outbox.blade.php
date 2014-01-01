@@ -32,5 +32,7 @@
 			@endforeach
 		</tbody>
 	</table>
+
+	{{ $msgs->links(); }}
 @endif
 @stop

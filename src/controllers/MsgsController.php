@@ -32,14 +32,14 @@ class MsgsController extends BaseController
 	public function index()
 	{
 		//show a listing of msgs
-		$msgs = User::find(Auth::user()->id)->messages()->orderBy('created_at','DESC')->get();
+		$msgs = User::find(Auth::user()->id)->messages()->orderBy('created_at','DESC')->paginate(10);
 		return View::make('msg::index_inbox', compact('msgs'));
 	}
 
 	public function index_outbox() 
 	{
 		//show a listing of outbox msgs
-		$msgs = User::find(Auth::user()->id)->sentmessages()->orderBy('created_at','DESC')->get();
+		$msgs = User::find(Auth::user()->id)->sentmessages()->orderBy('created_at','DESC')->paginate(10);
 		return View::make('msg::index_outbox', compact('msgs'));
 	}
 
