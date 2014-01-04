@@ -17,10 +17,10 @@
 	<table id="blogs" class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th class="col-md-4">{{{ Lang::get('msg::general.subject') }}}</th>
-				<th class="col-md-2">{{{ Lang::get('msg::general.from') }}}</th>
+				<th class="col-md-6">{{{ Lang::get('msg::general.subject') }}}</th>
+				<th class="col-md-1">{{{ Lang::get('msg::general.from') }}}</th>
 				<th class="col-md-2">{{{ Lang::get('msg::general.date') }}}</th>
-				<th class="col-md-2">{{{ Lang::get('msg::general.actions') }}}</th>
+				<th class="col-md-1">{{{ Lang::get('msg::general.actions') }}}</th>
 			</tr>
 		</thead>
 		<tbody>

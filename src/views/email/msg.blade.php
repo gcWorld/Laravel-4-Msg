@@ -13,7 +13,7 @@
 			{{ $mess }}
 			<hr>
 
-			{{ URL::to('msg/show/'.$id) }}
+			<a href="{{ URL::to('msg/show/'.$id) }}">{{ URL::to('msg/show/'.$id) }}</a>
 		</div>
 	</body>
 </html>
