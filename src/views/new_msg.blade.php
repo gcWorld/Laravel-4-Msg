@@ -11,6 +11,13 @@
 
 {{-- Content --}}
 @section('content')
+@if(isset($msg))
+@if(!is_null($msg->author)&&!is_null($msg->recipient))
+@if(Auth::user()->id!=$msg->recipient->id&&Auth::user()->id!=$msg->author->id)
+	<?php unset($msg); ?>
+@endif
+@endif
+@endif
 <form action="{{ action('MsgsController@handleCreate') }}" method="post" role="form">
 	<input type="hidden" name="_token" value="{{{ Session::getToken() }}}" />
 	<div class="form-group {{ $errors->first('to','has-error') }}">
@@ -30,15 +37,19 @@
 </form>
 <br>
 @if(isset($msg))
+@if(!is_null($msg->author)&&!is_null($msg->recipient))
+@if(Auth::user()->id==$msg->recipient->id&&Auth::user()->id==$msg->author->id)
 <div class="panel panel-success">
 	<div class="panel-heading">
 		<small class="pull-right">{{{ $msg->date_normal() }}}</small>
-    	<h3 class="panel-title">'{{{ $msg->subject }}}' {{{ Lang::get('msg::general.from2') }}} {{{isset($msg->author) ? $msg->author->username : Lang::get('msg::general.deleted_user')}}}</h3>
+    	<h3 class="panel-title">'{{{ $msg->subject }}}' {{{ Lang::get('msg::general.from2') }}} {{{ is_null($msg->author) ? Lang::get('msg::general.deleted_user') : $msg->author->username }}}</h3>
   	</div>
   	<div class="panel-body">
 		{{ $msg->message }}
 	</div>
 </div>
+@endif
+@endif
 @endif
 @stop
 
