@@ -111,11 +111,15 @@ class MsgsController extends BaseController
     			'sub'	=> $msg->subject
 			);
 
-			Mail::send(array('msg::email.msg', 'msg::email.msg-plain'), $data, function($message) use ($msg)
-			{
-			  //$message->from('admin@site.com', 'Site Admin');
-			  $message->to($msg->recipient->email, $msg->recipient->username)->subject('Neue private Nachricht');
-			});
+			if (!$user[0]->msg_not) {
+
+				Mail::send(array('msg::email.msg', 'msg::email.msg-plain'), $data, function($message) use ($msg)
+				{
+				  //$message->from('admin@site.com', 'Site Admin');
+				  $message->to($msg->recipient->email, $msg->recipient->username)->subject('Neue private Nachricht');
+				});
+
+			}
 
 			return Redirect::action('MsgsController@index')
 					->with( 'success', Lang::get('msg::general.alert.msg_send') );
