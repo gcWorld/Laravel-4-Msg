@@ -7,7 +7,7 @@ Requires
 --------
 
 * Twitter Bootstrap 3.0.x
-* Twitter typeahead.js
+* Twitter typeahead.js 0.9.3
 * Bootstrap 3 wysihtml5
 
 Installation
