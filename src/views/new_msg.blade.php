@@ -56,10 +56,10 @@
 @section('bottom_line')
 <script>
 $('.typeahead').typeahead({                                
-  name: 'usernames',                                                          
+  name: 'usernames',    
   prefetch: "{{ action('MsgsController@data') }}",                                         
   limit: 10                                                                   
 });
-$('#message').wysihtml5();
+$('#message').wysihtml5({"stylesheets": []});
 </script>
 @stop
